@@ -16,19 +16,13 @@ import { TbHeartFilled, TbHeart } from "react-icons/tb";
 
 function Collection({favorites, dispatch}) {
  const [datas, setDatas] = useState([]);
-
   useEffect(() => {
     fetch("http://127.0.0.1:8000/list/")
       .then((response) => response.json())
       .then((data) => {
        setDatas(data);
-       console.log('APIDEN GELEN DATA',data);
-   
       });
   }, []);
-
-
-
   const addfavorites = (id, name) => {
     dispatch({
       type: "SET_Favorites",
@@ -563,14 +557,11 @@ function Collection({favorites, dispatch}) {
               <AiOutlineSearch style={{ marginTop: "15px" }} />
             </Link>
             <div className="heart_icon_products">
-
               {favorites && favorites.some((fav) => fav.id === product.id) ? (
-                // Favori olarak işaretli bir kalp ikonu olan <TbHeartFilled> bileşenini render ediyoruz.
                 <TbHeartFilled
                 onClick={() => removefavorites(product?.id, product?.name)}
                 />
               ) : (
-                // Favori olarak işaretlenmemiş bir kalp ikonu olan <TbHeart> bileşenini render ediyoruz.
                 <TbHeart
                 onClick={() => addfavorites(product?.id, product?.name)} 
                 />

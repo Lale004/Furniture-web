@@ -9,7 +9,6 @@ from rest_framework.authtoken.models import Token
 
 User = get_user_model()
 
-
 @method_decorator(csrf_exempt, name="dispatch")
 class LoginView(APIView):
     def post(self, request):
